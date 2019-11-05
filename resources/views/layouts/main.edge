@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>
+      @!section('title')
+  </title>
+  {{ style('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}
+  
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Adonis</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    
+                    @loggedIn
+                        <li></li>
+                        <li class="nav-item active">
+                            <li class="nav-link text-light">Welcome, <span class=" text-uppercase"> {{ auth.user.username }}! :)</span></li>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/user-list">User Lists</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/add-user">Add User</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                    @else
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Signup</a>
+                        </li>
+                @endloggedIn
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        @!section('content')
+    </div>
+
+    {{script('https://code.jquery.com/jquery-3.3.1.slim.min.js')}}
+    {{script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')}}
+    {{script('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')}}
+</body>
+  
+</html>

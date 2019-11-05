@@ -1,0 +1,49 @@
+@layout('layouts.main')
+
+@section('title')
+Login Page - Login Now!
+@endsection
+
+@section('content')
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Login Page</h1>
+    <div class="container">
+        <div class="col-sm-8 offset-sm-2">
+
+            @if(flashMessage('loginError'))
+            <div class="alert alert-danger">
+                <span> {{ flashMessage('loginError') }} </span>
+            </div>
+            @endif
+
+            <form action="{{route('UserController.login')}}" method="POST">
+                {{csrfField()}}
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="email" name="email"
+                        placeholder="Enter email" value="{{old('email', '')}}">
+                    @if(hasErrorFor('email'))
+                    <div class="alert alert-danger mt-3">
+                        <span>{{getErrorFor('email')}}</span>
+                    </div>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    @if(hasErrorFor('password'))
+                    <div class="alert alert-danger mt-3">
+                        <span>{{getErrorFor('password')}}</span>
+                    </div>
+                    @endif
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="/signup">No account yet? Signup here.</a>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
